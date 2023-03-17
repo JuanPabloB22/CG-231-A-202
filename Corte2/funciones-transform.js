@@ -40,8 +40,8 @@ function Escalado (vs) {
 
 
 function EscaladoReal(fig, posini ,vs){
-    tr = [-posini[0],-posini[1], -posini[2]];    // Vector para llevar al origen
-    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig
+    tr = [-posini[0],-posini[1],-posini[2]];    // Vector para llevar al origen
+    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig al origen
     fig.applyMatrix(Escalado(vs));     //Se aplica la matriz de escalado a fig 
     fig.applyMatrix(Traslacion(posini)); //Se aplica la matriz de translación con posición inicial a fig
 }
@@ -63,14 +63,14 @@ function Traslacion(vt){
 /**
  * RotacionX: Construye la matriz de rotacion en el eje x y la retorna
  * ENTRADAS: angulo =  Angulo de rotacion en el eje x 
- * SALIDAS: matrizRX = Matriz de rotacion 
+ * SALIDAS: matrizRX = Matriz de rotacion para el angulo ingresado
  */
 function RotacionX(angulo){
     var matrizRX = new THREE.Matrix4(); 
     var alpha = angulo*Math.PI/180; 
     var cos = Math.cos(alpha);
     var sen = Math.sin(alpha);   
-    matrizR.set(1,   0,   0, 0,
+    matrizRX.set(1,   0,   0, 0,
                 0, cos,-sen, 0,
                 0, sen, cos, 0,
                 0 ,  0,  0,  1)
@@ -80,36 +80,60 @@ function RotacionX(angulo){
 }
 function RotacionRealX(fig, posini, angulo){
     tr = [-posini[0],-posini[1], -posini[2]];    // Vector para llevar al origen
-    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig
-    fig.applyMatrix(RotacionX(angulo));     //Se aplica la matriz de escalado a fig 
-    fig.applyMatrix(Traslacion(posini)); //Se aplica la matriz de translación con posición inicial a fig
+    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig al origen
+    fig.applyMatrix(RotacionX(angulo)); //Se aplica el angulo de rotacion en el eje X
+    fig.applyMatrix(Traslacion(posini)); //Se aplica la matriz de translación con posición inicial a fig  
+    
 }
 
 /**
- * 
+ * RotacionY: Construye la matriz de rotacion en el eje Y y la retorna
+ * ENTRADAS: angulo =  Angulo de rotacion en el eje Y 
+ * SALIDAS: matrizRX = Matriz de rotacion para el angulo ingresado
  */
-/*function RotacionY(angulo){
+function RotacionY(angulo){
     var matrizRY = new THREE.Matrix4();  
-    var alpha = 180*Math.PI/180; 
+    var alpha = angulo*Math.PI/180; 
     var cos = Math.cos(alpha);
     var sen = Math.sin(alpha);  
-    matrizR.set(cos,   0, sen, 0,
+    matrizRY.set(cos,   0, sen, 0,
                   0,   1,   0, 0,
                 -sen,  0, cos, 0,
                   0,   0,  0,  1)
 
     return matrizRY; 
 }
+function RotacionRealY(fig, posini, angulo){
+    tr = [-posini[0],-posini[1], -posini[2]];    // Vector para llevar al origen
+    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig al origen
+    fig.applyMatrix(RotacionY(angulo)); //Se aplica el angulo de rotacion en el eje Y
+    fig.applyMatrix(Traslacion(posini)); //Se aplica la matriz de translación con posición inicial a fig  
+    
+}
+/**
+ * RotacionZ: Construye la matriz de rotacion en el eje Z y la retorna
+ * ENTRADAS: angulo =  Angulo de rotacion en el eje Z 
+ * SALIDAS: matrizRZ = Matriz de rotacion para el angulo ingresado
+ * 
+ */
+
 function RotacionZ(angulo){
     var matrizRZ = new THREE.Matrix4();
-    var alpha = 180*Math.PI/180; 
+    var alpha = angulo*Math.PI/180; 
     var cos = Math.cos(alpha);
     var sen = Math.sin(alpha);    
-    matrizR.set(cos,-sen, 0, 0,
+    matrizRZ.set(cos,-sen, 0, 0,
                 sen, cos, 0, 0,
                  0,   0,  1, 0,
                  0,   0,  0, 1)
 
     return matrizRZ;
 }
-*/
+function RotacionRealZ(fig, posini, angulo){
+    tr = [-posini[0],-posini[1], -posini[2]];    // Vector para llevar al origen
+    fig.applyMatrix(Traslacion(tr));   //Se aplica la matriz de translación a fig al origen
+    fig.applyMatrix(RotacionZ(angulo)); //Se aplica el angulo de rotacion en el eje Z
+    fig.applyMatrix(Traslacion(posini)); //Se aplica la matriz de translación con posición inicial a fig  
+    
+}
+
