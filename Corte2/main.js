@@ -30,15 +30,15 @@ function init() {
     //Cámara
     camera.position.x = 50;
     camera.position.y = 50;
-    camera.position.z = 200;
+    camera.position.z = 250;
     camera.lookAt(scene.position);
 
     //Creación de las Figuras
 
     //Geometria de la piramide
     
-    lado= 30;   //lado de la base de la piramide
-    h= 45; //altura de la piramide
+    lado= 20;   //lado de la base de la piramide
+    h= 35; //altura de la piramide
 
     [v1,v2,v3,v4,v5]=[[0,0,0],[lado,0,0],[lado,0,lado],[0,0,lado],[lado/2,h,lado/2]];
     var vertices= [v1,v2,v3,v4,v5,v1,v4,v3,v5,v2];
@@ -59,8 +59,18 @@ function init() {
     for (i=0; i<2;i++)
         piramide.push(new THREE.Line(geompiramide, material[i]));
     
-    // Girar la piramide
-    EscaladoReal(piramide[1], [lado/2, 0, lado/2], [1, -1, 1]);
+    // Traslacion a la piramide
+    piramide[1].applyMatrix(Traslacion([2*lado,2*lado,0]))
+    //Escalado al 150 % a la piramide
+    EscaladoReal(piramide[1], [2*lado, 2*lado, 0], [1.5, 1.5, 1.5]);
+    //Rotacion en eje x a la piramide
+    RotacionRealX(piramide[1],[2*lado, 2*lado, 0],45);
+    //Rotacion en eje  y a la piramide
+    RotacionRealY(piramide[1],[2*lado, 2*lado, 0],45);
+    //Rotacion en eje Z a la piramide
+    RotacionRealZ(piramide[1],[2*lado, 2*lado, 0],60);
+
+    
 
     // En el documento HTML
     document.body.appendChild(renderer.domElement);
