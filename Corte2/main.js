@@ -60,15 +60,15 @@ function init() {
         piramide.push(new THREE.Line(geompiramide, material[i]));
     
     // Traslacion a la piramide
-    piramide[1].applyMatrix(Traslacion([2*lado,2*lado,0]))
+    piramide[0].applyMatrix(Traslacion([2*lado,2*lado,0]))
     //Escalado al 150 % a la piramide
-    EscaladoReal(piramide[1], [2*lado, 2*lado, 0], [1.5, 1.5, 1.5]);
+    EscaladoReal(piramide[0], [2*lado, 2*lado, 0], [1.5, 1.5, 1.5]);
     //Rotacion en eje x a la piramide
-    RotacionRealX(piramide[1],[2*lado, 2*lado, 0],45);
+    RotacionRealX(piramide[0],[2*lado, 2*lado, 0],45);
     //Rotacion en eje  y a la piramide
-    RotacionRealY(piramide[1],[2*lado, 2*lado, 0],45);
+    RotacionRealY(piramide[0],[2*lado, 2*lado, 0],45);
     //Rotacion en eje Z a la piramide
-    RotacionRealZ(piramide[1],[2*lado, 2*lado, 0],60);
+    RotacionRealZ(piramide[0],[2*lado, 2*lado, 0],60);
 
     
 
@@ -81,7 +81,7 @@ function init() {
     scene.add(arrowY);	
     scene.add(arrowZ);
     for(i=0; i<2;i++)
-        scene.add(piramide[i]);
+        scene.add(piramide[0]);
 
     renderer.render(scene, camera);
 }
